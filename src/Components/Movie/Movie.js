@@ -1,32 +1,31 @@
-import { Button, Container, Row,Card, Col } from 'react-bootstrap';
-function Movie({ele}) {
+import { Button, Container, Row, Card, Col } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
 
+function Movie({ props }) {
+    const [cardInfo, setCardInfo] = useState({});
+    const [show, setShow] = useState(false);
     return (
-        <>
-            <Container className='div-container'>
-                <Row md={3}>
-                    {
-                            <Col key={ele.id} md={4}>
-                                <Card className='div-card'>
-                                    <Card.Img className='div-card-img' variant="top" src={ele.image} />
-                                    <Card.Body>
-                                        <Card.Title className='div-card-title'>{ele.title}</Card.Title>
-                                        <Card.Link className='div-card-link'>
-                                            {ele.sourceUrl}
-                                        </Card.Link>
-                                        <div>
-                                            <Button className='div-card-button' variant='primary'>Add To Favourit</Button>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                    }
-                </Row>
-            </Container>
+        <div>
             
-            
-        </>
+                <Col key={props.data.id} md={4}>
+                    <Card className='div-card'>
+                        <Card.Img className='div-card-img' variant="top" src={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`} />
+                        <Card.Body>
+                            <Card.Title className='div-card-title'>{props.data.title}</Card.Title>
+                            <p>{props.data.relase_date}</p>
+                            <div>
+                                <Button className='div-card-button' variant='primary' onClick={() => {
+                                    props.setCardInfo(props.data);
+                                    props.setShow(true);
+                                }}>Add fav</Button>
+                            </div>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                                </div>
+
     )
-}
+                
+} 
 
 export default Movie;
