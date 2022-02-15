@@ -1,6 +1,7 @@
 import MovieList from '../MovieList/MovieList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Modalo from './modal/Modalo';
 
 
 function Home() {
@@ -27,9 +28,8 @@ function Home() {
     return (
 
         <>
-
-
-            <MovieList data={data} />
+        <Modalo cardInfo={cardInfo} show={show} handleClose={handleClose} />
+<MovieList data={data} />
         </>
 
     );
