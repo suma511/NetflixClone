@@ -1,15 +1,13 @@
-import MovieList from '../MovieList/MovieList';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Modalo from './modal/Modalo';
-
+import MovieList from '../MovieList/MovieList';
 
 function Home() {
     const [data, setData] = useState([]);
 
-    const getAllMovies = async () => {
+    const getAllTrending = async () => {
 
-        return await axios.get(`https://api.themoviedb.org/3/trending/all/week?api_key=37ddc7081e348bf246a42f3be2b3dfd0&language=en-US`)
+        return await axios.get(`https://moviesrepo.herokuapp.com/trending`)
             .then(result => {
                 console.log(result.data);
                 return result.data;
@@ -20,15 +18,14 @@ function Home() {
 
     useEffect(() => {
         void (async () => {
-            let data = await getAllMovies();
+            let data = await getAllTrending();
             setData(data);
         })();
     }, []);
 
     return (
 
-        <>
-        <Modalo cardInfo={cardInfo} show={show} handleClose={handleClose} />
+        <> 
 <MovieList data={data} />
         </>
 

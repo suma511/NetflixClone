@@ -1,14 +1,17 @@
-import { Modal } from "bootstrap";
-import { Button } from "bootstrap";
-function ModalMovie ({movieInfo,Add,handelAdd}) {
+import Modal from 'react-bootstrap/Modal';
+import { Button } from 'react-bootstrap';
+import './ModalMovie.css';
+function ModalMovie ({cardInfo,show,handelClose}) {
     return(
         <>
-        <Modal show={Add} onHide={handelAdd} animation={false}/>
+        <Modal show={show} onHide={handelClose} animation={false}/>
         <Modal.Header closeButton>
+            
 <Modal.Title>Add To Fav</Modal.Title>
         </Modal.Header>
         <Modal.Body className="body">
-            <h4>{movieInfo.title}</h4>
+            <h3>{cardInfo.title}</h3>
+            <img alt ='' src={`https://image.tmdb.org/t/p/w500${cardInfo.poster_path}`}/>
             <div>
                 <label htmlFor="op">write option</label>
                 <input placeholder="write option" type="text" id="op"/>
