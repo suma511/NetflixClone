@@ -1,31 +1,38 @@
-import { Button, Container, Row, Card, Col } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-
-function Movie({ props }) {
+import { useState } from 'react';
+import { Button, Card } from 'react-bootstrap';
+import ModalMovie from '../ModalMovie/ModalMovie';
+function Movie({ mov }) {
     const [cardInfo, setCardInfo] = useState({});
     const [show, setShow] = useState(false);
+    const handelClose = () => { setShow(false); }
     return (
-        <div>
-            
-                <Col key={props.data.id} md={4}>
-                    <Card className='div-card'>
-                        <Card.Img className='div-card-img' variant="top" src={`https://image.tmdb.org/t/p/w500${props.data.poster_path}`} />
-                        <Card.Body>
-                            <Card.Title className='div-card-title'>{props.data.title}</Card.Title>
-                            <p>{props.data.relase_date}</p>
-                            <div>
-                                <Button className='div-card-button' variant='primary' onClick={() => {
-                                    props.setCardInfo(props.data);
-                                    props.setShow(true);
-                                }}>Add fav</Button>
-                            </div>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                                </div>
+        <>
+            <Card style={{ width: '50rem' }}>
+                <Card.Img className='div-card-img' variant="top" src={`https://image.tmdb.org/t/p/w500${mov.poster_path}`} />
+                <Card.Body>
+                    <Card.Title>{mov.title}</Card.Title>
+                    <Card.Text>
+                        <p>{mov.relase_date}</p>
+                    </Card.Text>
+                    <Card.Text>
+                        {mov.overview}
+                    </Card.Text>
+                    <div>
+                        <Button className='div-card-button' variant='primary'
+                            onClick={() => {
+                                setCardInfo(mov);
+                                setShow(true);
+                            }}>Add To fav</Button>
+                    </div>
+                </Card.Body>
+            </Card>
 
+            {
+                <ModalMovie cardInfo={cardInfo} show={show} handelClose={handelClose} />}
+        </>
     )
-                
-} 
+
+
+}
 
 export default Movie;
