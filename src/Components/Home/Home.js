@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import MovieList from '../MovieList/MovieList';
-
+import  Navbar  from '../Navbar/Navbar';
 function Home() {
     const [data, setData] = useState([]);
 
@@ -27,6 +27,7 @@ function Home() {
 
         <> 
 <MovieList data={data} />
+<Navbar/>
         </>
 
     );
